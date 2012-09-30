@@ -15,7 +15,6 @@ gem 'annotate', '2.5.0', group: :development
 
 group :development do
 	gem 'sqlite3'
-	gem "sqlite3-ruby", "~> 1.3.3"
 end
 
 group :production do
