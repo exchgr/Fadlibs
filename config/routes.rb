@@ -1,4 +1,6 @@
 Fadlibs::Application.routes.draw do
+  resources :libs
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
