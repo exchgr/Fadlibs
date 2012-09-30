@@ -6,8 +6,6 @@
     = javascript_include_tag 'application', 'app-wide', controller.controller_name
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = csrf_meta_tags 
-  - if !session["token"]
-    = link_to image_tag("http://ak.imgag.com/imgag/eg/new_site/fb_connect.png", :border=>0),@redirect_url, {:title => "Log in"}
   %body
     .container
       %h1.logo Fadlibs.
