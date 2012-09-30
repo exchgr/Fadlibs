@@ -16,7 +16,7 @@ class LibsController < ApplicationController
   def show
     @lib = Lib.find(params[:id])
     @fullstring = get_full_lib(@lib)
-    session["message"] = @fullstring
+    session["message"] =  @finalstring_nohtml
     session["lib_id"] = params[:id]
     app_id = "367333956679167"
     app_secret ="790cb4afc91ea9aa8949ec944af62f2e"
@@ -81,12 +81,15 @@ class LibsController < ApplicationController
     logger.debug("key value map: #{key_value_map}") #works
 
     finalstring = ""
+    @finalstring_nohtml =""
     frame_text.each_index do |i|
       begin
         trimmed_keyword = keyword_text[i][1..keyword_text[i].length-2]
         finalstring = finalstring + frame_text[i] + '<span class="keyword">'+key_value_map[trimmed_keyword]+'</span>'
+        @finalstring_nohtml =  @finalstring_nohtml + frame_text[i] +key_value_map[trimmed_keyword]
       rescue
         finalstring = finalstring + frame_text[i]
+        @finalstring_nohtml =  @finalstring_nohtml + frame_text[i]
       end
 
     end
@@ -111,8 +114,11 @@ class LibsController < ApplicationController
       keyword_hash = params[:form]
       keyword_array = []
       value_array = []
-
+      @people = []
       keyword_hash.each_pair do |key,value| 
+        if key.to_s.include?("person")
+          @people.insert(value.to_s)
+        end    
         keyword_array.append(key)
         value_array.append(value)
       end
@@ -124,7 +130,8 @@ class LibsController < ApplicationController
       @lib.update_attribute(:keyword_array, keyword_array.join('|'))
       @lib.update_attribute(:value_array, value_array.join('|'))
 
-      @lib.save      
+      @lib.save     
+      session["people"] = @people 
       redirect_to @lib, notice: 'Lib was successfully created.'
     else
 
