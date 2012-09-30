@@ -25,13 +25,6 @@ class LibsController < ApplicationController
   # GET /libs/new.json
   def new
     @lib = Lib.new
-    templates = ['[person1] and [person2] went to [place].', '[person1] held a [adjective] [noun].']
-    r = Random.new
-    lib_index = r.rand(0..templates.count-1)
-    template = templates[lib_index]
-
-    logger.debug("random template: #{template}")
-
 
     respond_to do |format|
       format.html # new.html.erb

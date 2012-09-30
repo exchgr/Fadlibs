@@ -1,3 +1,3 @@
 class Lib < ActiveRecord::Base
-  attr_accessible :frame_text, :keyword_text
+  # attr_accessible :title, :body
 end

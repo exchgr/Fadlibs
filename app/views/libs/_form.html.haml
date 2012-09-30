@@ -1,0 +1,10 @@
+= form_for @lib do |f|
+  - if @lib.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@lib.errors.count, "error")} prohibited this lib from being saved:"
+      %ul
+        - @lib.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

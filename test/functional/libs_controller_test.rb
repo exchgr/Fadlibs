@@ -18,7 +18,7 @@ class LibsControllerTest < ActionController::TestCase
 
   test "should create lib" do
     assert_difference('Lib.count') do
-      post :create, lib: { frame_text: @lib.frame_text, keyword_text: @lib.keyword_text }
+      post :create, lib: {  }
     end
 
     assert_redirected_to lib_path(assigns(:lib))
@@ -35,7 +35,7 @@ class LibsControllerTest < ActionController::TestCase
   end
 
   test "should update lib" do
-    put :update, id: @lib, lib: { frame_text: @lib.frame_text, keyword_text: @lib.keyword_text }
+    put :update, id: @lib, lib: {  }
     assert_redirected_to lib_path(assigns(:lib))
   end
 

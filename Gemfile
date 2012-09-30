@@ -13,7 +13,7 @@ group :production do
 	gem 'pg'
 end
 
-gem 'haml'
+gem 'haml-rails'
 gem 'thin'
 
 # Gems used only for assets and not required
