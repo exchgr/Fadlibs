@@ -1,7 +1,9 @@
 Fadlibs::Application.routes.draw do
+  get "home/index"
+  root :to => "home#index"
   resources :libs 
-
   match 'create_lib' => 'libs#create_lib'
+  match '/auth/facebook/callback' => 'libs#fbauth'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
