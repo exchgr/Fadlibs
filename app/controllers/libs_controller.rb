@@ -27,6 +27,13 @@ class LibsController < ApplicationController
     @lib = Lib.new
     
     templates = ['[person1] and [person2] went to the [place].','[person1] was carrying a/an [adjective] [noun]']
+    r = Random.new
+    template_index = r.rand(0..templates.count-1)
+    template = templates[template_index]
+    logger.debug("selected template: #{template}")
+
+    @frame_text = template.text.split(/\[[a-z0-9]*\]/)
+    
 
     respond_to do |format|
       format.html # new.html.erb
