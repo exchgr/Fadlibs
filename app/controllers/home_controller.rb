@@ -10,6 +10,7 @@ class HomeController < ApplicationController
       @token = @oauth.get_access_token(params["code"]) 
       @message = "done"  
       @graph = Koala::Facebook::API.new(@token)
+      session["token"] = params["code"]
       @user  = @graph.get_object("me")          
       @fb_user_id =@user["id"]   
       target_id = 1241641191    

@@ -159,7 +159,9 @@ GEM
 
 PLATFORMS
   ruby
-  annotate
+
+DEPENDENCIES
+  annotate (= 2.5.0)
   coffee-rails (~> 3.2.1)
   compass-rails (~> 1.0.3)
   execjs
