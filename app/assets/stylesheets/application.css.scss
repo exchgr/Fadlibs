@@ -71,6 +71,16 @@ form {
         }
     }
 
+    .button {
+        display: block;
+        margin: 30px auto 0px;
+        border: {
+            width: 3px;
+            radius: 100px;
+        }
+        font-size: 20px;
+    }
+
     .word {
         display: inline-block;
         text-align: center;
