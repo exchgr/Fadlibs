@@ -12,11 +12,13 @@ window.fbAsyncInit = ->
     if user.authResponse
       $(".fb-login-button").hide()
       console.log "Welcome!  Fetching your information.... "
+      FB.api '/me/friends', (data) ->
+        console.log(data.data)
       FB.api "/me", (user) ->
         console.log "Good to see you, " + user.name + "."
         if user
           image = $('#userimage')[0]
-          image.src = 'http://graph.facebook.com/' + user.id + '/picture';
+          image.src = 'http://graph.facebook.com/' + user.id + '/picture'
           name = $('#username')[0]
           name.innerHTML = user.name
     else
