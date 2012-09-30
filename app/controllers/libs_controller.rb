@@ -16,12 +16,7 @@ class LibsController < ApplicationController
   def show
     @lib = Lib.find(params[:id])
 
-    fullstring = get_full_lib(@lib)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @lib }
-    end
+    @fullstring = get_full_lib(@lib)
   end
 
   # GET /libs/new
