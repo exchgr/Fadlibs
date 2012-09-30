@@ -111,8 +111,11 @@ class LibsController < ApplicationController
       keyword_hash = params[:form]
       keyword_array = []
       value_array = []
-
+      @people = []
       keyword_hash.each_pair do |key,value| 
+        if key.to_s.include?("person")
+          @people.insert(value.to_s)
+        end    
         keyword_array.append(key)
         value_array.append(value)
       end
@@ -124,7 +127,8 @@ class LibsController < ApplicationController
       @lib.update_attribute(:keyword_array, keyword_array.join('|'))
       @lib.update_attribute(:value_array, value_array.join('|'))
 
-      @lib.save      
+      @lib.save     
+      session["people"] = @people 
       redirect_to @lib, notice: 'Lib was successfully created.'
     else
 

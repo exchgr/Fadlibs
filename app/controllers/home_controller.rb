@@ -50,7 +50,7 @@ class HomeController < ApplicationController
     frame_text.each_index do |i|
       begin
         trimmed_keyword = keyword_text[i][1..keyword_text[i].length-2]
-        finalstring = finalstring + frame_text[i] + '<span class="keyword">'+key_value_map[trimmed_keyword]+'</span>'
+        finalstring = finalstring + frame_text[i] +key_value_map[trimmed_keyword]
       rescue
         finalstring = finalstring + frame_text[i]
       end
