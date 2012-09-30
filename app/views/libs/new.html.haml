@@ -1,10 +1,11 @@
 %h1 New lib
+- count = 0
 = form_tag("../create_lib", :method => "post", :name=>"aform") do
- - @keyword_text.each_index do |i| 
-  = label_tag("form[#{i}]", @keyword_text[i])
-  = text_field_tag("form[#{i}]")
-
- =hidden_field_tag("frame_text", @frame_text.join(','))
-
- = submit_tag("Submit")
+  - @keyword_set.each do |keyword| 
+    = label_tag("form[#{keyword}]", keyword)
+    = text_field_tag("form[#{keyword}]")
+    - count = count+1
+  = hidden_field_tag("frame_text", @frame_text.join(','))
+  = hidden_field_tag("keyword_text", @keyword_text.join(','))
+  = submit_tag("Submit")
 = link_to 'Back', libs_path

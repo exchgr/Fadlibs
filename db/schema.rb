@@ -11,13 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930022708) do
+
+ActiveRecord::Schema.define(:version => 20120930053450) do
 
   create_table "libs", :force => true do |t|
     t.string   "frame_text"
     t.string   "keyword_text"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "keyword_array"
+    t.string   "value_array"
   end
 
 end
