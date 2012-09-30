@@ -30,6 +30,7 @@ class LibsController < ApplicationController
     templates.append('[person1], [person2], and [person3] were in a [mode of transportation] together. [person1] liked eating [food], [person2] liked [color] [noun]s, and [person3] was busy [verb]ing. After a few minutes, the [mode of transportation] arrived at its final destination, [place]. All three friends got out, and started [verb2]ing. [adjective] [noun2]s were everywhere. It was a glorious day.')
     templates.append('Meet our hero [person1], a super-intelligent [profession]. A run in with the evil villain [person2] leads [person1] to create his alter ego, a [color] [adjective] giant capable of great destruction. He [adverb] battles [person2] with his girlfriend [person3]. Eventually, it is discovered that [person3], distinguished by her [facial feature], is actually trying to destroy [city] with evil villain [person2]. Eventually, the enemy is subdued by [verb]ing him with a [noun]. All is good in this world, once again.')
     templates.append('Dear [person1]. I enjoy [adjective] walks on the beach, and serendipitous encounters with [plural noun]. I really like [drink] mixed with [fruit], and romantic candle-lit [noun]. I am well-read, from Dr. Seuss to [famous person]. I travel frequently, especially to [country] where I like to [verb]. I am looking for love in the form of a [adjective2] goddess. She should have the physique of [person2], espcially the [body part]. I would prefer if she knew how to cook, clean, [verb], and wash my [noun3]s. I know I am not very attractive in my picture, but it was taken [number] years ago, and I have since become more [adjective3]')
+    templates.append('[person1], [person2], and I are best friends. We love to [verb] our [noun2]s together. One day, our friendship was tested. A [natural disaster] occured and people were being hurt by [adjective] [noun]s. At first, we were all [emotion adjective], but then we realized we had to stop the [adjective] [noun]s. It was not easy, but we finally did it by [verb2]ing [adjective2] [noun3]s. Now, we could finally [verb] our [noun2]s in peace.')
 
     r = Random.new
     template_index = r.rand(0..templates.count-1)
@@ -77,7 +78,7 @@ class LibsController < ApplicationController
     frame_text.each_index do |i|
       begin
         trimmed_keyword = keyword_text[i][1..keyword_text[i].length-2]
-        finalstring = finalstring + frame_text[i] + key_value_map[trimmed_keyword]
+        finalstring = finalstring + frame_text[i] + '<span class="keyword">'+key_value_map[trimmed_keyword]+'</span>'
       rescue
         finalstring = finalstring + frame_text[i]
       end
@@ -86,7 +87,7 @@ class LibsController < ApplicationController
 
     #logger.debug("finalstring: #{finalstring}")
 
-    return finalstring
+    return finalstring.html_safe
     
   end
 
