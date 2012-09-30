@@ -8,6 +8,7 @@ window.fbAsyncInit = ->
     status: true # check login status
     cookie: true # enable cookies to allow the server to access the session
     xfbml: true # parse XFBML
+$('header').on 'click', '.fb-login-button', ->
   FB.login (user) ->
     if user.authResponse
       $(".fb-login-button").hide()
@@ -22,18 +23,6 @@ window.fbAsyncInit = ->
     else
       console.log "User cancelled login or did not fully authorize."
       
-
- 
-
-   
-            
-          
-
-
-
-
-
-
 # Additional initialization code here
 
 # Load the SDK Asynchronously
