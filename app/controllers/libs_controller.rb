@@ -24,14 +24,17 @@ class LibsController < ApplicationController
   def new
     @lib = Lib.new
     
-    templates = ['[person1] and [person2] went to the [place]. [person1] was [adjective]','[person1] was carrying a/an [adjective] [noun]']
+    templates = []
+    templates.append('One day, [person1] and [person2] went to [place]. [person1] was [adjective] that fateful day. Because of that, suddenly, a [color] [noun] appeared and started [ing verb]. [person1] [past tense of verb], and [person2] decided to [verb] a [noun2].')
+    templates.append('This year our class is doing a special science project. We have a [person1] that we are taking care of. It is very [adjective] and it has [color] [body part]. It lives in a [noun] in the back of our classroom. We feed it [food] and [drink] every day, but I think it really wants to eat my [noun2]. Everyone likes our [person1]. One day, the [person1] got out of its cage and started [verb]ing all around the room. I think it was trying to say, [exclamation]!')
+    templates.append('[person1], [person2], and [person3] were in a [mode of transportation] together. [person1] liked eating [food], [person2] liked [color] [noun]s, and [person3] was busy [verb]ing. After a few minutes, the [mode of transportation] arrived at its final destination, [place]. All three friends got out, and started [verb2]ing. [adjective] [noun2]s were everywhere. It was a glorious day.')
     r = Random.new
     template_index = r.rand(0..templates.count-1)
     template = templates[template_index]
     logger.debug("selected template: #{template}")
 
-    @frame_text = template.split(/\[[a-z0-9]*\]/)
-    @keyword_text = template.scan(/\[[a-z0-9]*\]/)
+    @frame_text = template.split(/\[[a-z0-9\s]*\]/)
+    @keyword_text = template.scan(/\[[a-z0-9\s]*\]/)
     @keyword_set = @keyword_text.to_set
 
     logger.debug("frame text: #{@frame_text}")
