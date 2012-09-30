@@ -16,10 +16,7 @@ class LibsController < ApplicationController
   def show
     @lib = Lib.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @lib }
-    end
+    @fullstring = get_full_lib(@lib)
   end
 
   # GET /libs/new
@@ -27,7 +24,7 @@ class LibsController < ApplicationController
   def new
     @lib = Lib.new
     
-    templates = ['[person1] and [person2] went to the [place].','[person1] was carrying a/an [adjective] [noun]']
+    templates = ['[person1] and [person2] went to the [place]. [person1] was [adjective]','[person1] was carrying a/an [adjective] [noun]']
     r = Random.new
     template_index = r.rand(0..templates.count-1)
     template = templates[template_index]
@@ -35,6 +32,7 @@ class LibsController < ApplicationController
 
     @frame_text = template.split(/\[[a-z0-9]*\]/)
     @keyword_text = template.scan(/\[[a-z0-9]*\]/)
+    @keyword_set = @keyword_text.to_set
 
     logger.debug("frame text: #{@frame_text}")
     logger.debug("keyword text: #{@keyword_text}")
@@ -51,6 +49,31 @@ class LibsController < ApplicationController
     @lib = Lib.find(params[:id])
   end
 
+  def get_full_lib(lib)
+    frame_text = lib.frame_text.split(",")
+    keyword_text = lib.keyword_text.split(",")
+    keyword_array = lib.keyword_array.split(",")
+    value_array = lib.value_array.split(",")
+
+    key_value_map = {}
+    keyword_array.each_index do |i|
+      key_value_map[keyword_array[i]] = value_array[i]
+    end
+    
+    #logger.debug("key value map: #{key_value_map}") #works
+
+    finalstring = ""
+    frame_text.each_index do |i|
+      trimmed_keyword = keyword_text[i][1..keyword_text[i].length-2]
+      finalstring = finalstring + frame_text[i] + key_value_map[trimmed_keyword]
+    end
+
+    #logger.debug("finalstring: #{finalstring}")
+
+    return finalstring
+    
+  end
+
   def create_lib
     if request.post?
       logger.debug("params: #{params}") 
@@ -58,15 +81,27 @@ class LibsController < ApplicationController
       
 
       @lib.update_attribute(:frame_text, params[:frame_text])
+      @lib.update_attribute(:keyword_text, params[:keyword_text])
+
       keyword_hash = params[:form]
       keyword_array = []
-      keyword_hash.each_pair { |key,value| keyword_array.append(value)}
+      value_array = []
 
+      keyword_hash.each_pair do |key,value| 
+        keyword_array.append(key)
+        value_array.append(value)
+      end
+      logger.debug("frame text: #{params[:frame_text]}")
+      logger.debug("keyword text: #{params[:keyword_text]}")
       logger.debug("keyword array: #{keyword_array}")
+      logger.debug("value array: #{value_array}")
 
-      @lib.update_attribute(:keyword_text, keyword_array.join(','))
+      @lib.update_attribute(:keyword_array, keyword_array.join(','))
+      @lib.update_attribute(:value_array, value_array.join(','))
 
       @lib.save
+
+      
 
       redirect_to @lib, notice: 'Lib was successfully created.'
 
