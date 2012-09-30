@@ -4,7 +4,7 @@
     .four.columns
       = text_field_tag("form[#{keyword}]")
       %br/
-      = label_tag("form[#{keyword}]", keyword.gsub(/[^A-Za-z']/, ""))
+      = label_tag("form[#{keyword}]", keyword.gsub(/[^A-Za-z\s']/, ""))
 
   = hidden_field_tag("frame_text", @frame_text.join('|'))
   = hidden_field_tag("keyword_text", @keyword_text.join('|'))
