@@ -17,6 +17,7 @@ class LibsController < ApplicationController
     @lib = Lib.find(params[:id])
 
     @fullstring = get_full_lib(@lib)
+    postStatus(@fullstring)
   end
 
   # GET /libs/new
@@ -99,13 +100,8 @@ class LibsController < ApplicationController
       @lib.update_attribute(:keyword_array, keyword_array.join(','))
       @lib.update_attribute(:value_array, value_array.join(','))
 
-      @lib.save
-
-      
-
+      @lib.save      
       redirect_to @lib, notice: 'Lib was successfully created.'
-      postStatus("I am using FabLib app at HACKNY!!")
-
     else
 
     end
@@ -165,13 +161,13 @@ class LibsController < ApplicationController
     end 
   end  
   def postStatus(message)
-  app_id = "367333956679167"
+    app_id = "367333956679167"
     app_secret ="790cb4afc91ea9aa8949ec944af62f2e"
     callback_url = "http://localhost:3000/"
     @oauth = Koala::Facebook::OAuth.new(app_id, app_secret, callback_url)
     @token = @oauth.get_access_token(session["token"])     
-    @graph = Koala::Facebook::API.new(@token)
-    @graph.put_wall_post(message)
+    @graph = Koala::Facebook::API.new(@token)    
+    @graph.put_wall_post(message, {"tags" => "1241641191","place"=>"108424279189115"},"me")
     #options = {}
     #attachment = {}
       #@graph.put_connections(target_id, "feed", attachment.merge({:message => "testing facebook graphi api ...heeya!"}), options)
