@@ -18,9 +18,11 @@
 
 // Variables
 
-// Greys
+// Grays
 $black: #333;
 $grayDark: #666;
+$grayLight: #aaa;
+$almostWhite: #eee;
 $white: #fff;
 
 body {
@@ -61,6 +63,7 @@ form {
         background: none;
         font-family: "Waiting for the Sunrise", cursive;
         font-size: 18px;
+        text-shadow: 0px 1px 1px $white;
 
         &:focus {
             background: none;
@@ -77,6 +80,7 @@ form {
         box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
         border-radius: 10px;
         padding: 40px;
+        background-color: $almostWhite;
         background-image: image-url('paper.png');
     }
 }
