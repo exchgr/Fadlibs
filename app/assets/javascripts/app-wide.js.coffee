@@ -1,5 +1,7 @@
 # Add all the app-wide coffeescript here.
 
+acData = []
+
 # Facebook auth
 window.fbAsyncInit = ->
   FB.init
@@ -13,7 +15,11 @@ window.fbAsyncInit = ->
       $(".fb-login-button").hide()
       console.log "Welcome!  Fetching your information.... "
       FB.api '/me/friends', (data) ->
-        console.log(data.data)
+        for obj in data.data
+          acData.push obj.name
+        $('.person').autocomplete(
+          source: acData
+        )
       FB.api "/me", (user) ->
         console.log "Good to see you, " + user.name + "."
         if user
