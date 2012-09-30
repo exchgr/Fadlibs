@@ -124,6 +124,14 @@ form {
 
 #madlib-output {
     margin-top:50px;
-    font-family: "Waiting for the Sunrise", bold;
-    font-size:40px;
+    padding:40px;
+    font-family: Courier;
+    font-size:20px;
+    background-image: image-url('paper.png');
+
+    span.keyword {
+        font-family: "Waiting for the Sunrise", bold;
+        font-size:30px;
+        text-decoration: underline;
+    }
 }

@@ -2,7 +2,10 @@
   .row
   - @keyword_set.each do |keyword| 
     .four.columns
-      = text_field_tag("form[#{keyword}]")
+      - if keyword.include?('person')
+        = text_field_tag("form[#{keyword}]", value="", options={:class=>'person'})
+      - else
+        = text_field_tag("form[#{keyword}]", value="")
       %br/
       = label_tag("form[#{keyword}]", keyword.gsub(/[^A-Za-z\s']/, ""))
 
