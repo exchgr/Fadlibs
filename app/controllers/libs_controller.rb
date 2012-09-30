@@ -32,7 +32,7 @@ class LibsController < ApplicationController
     template = templates[template_index]
     logger.debug("selected template: #{template}")
 
-    @frame_text = template.text.split(/\[[a-z0-9]*\]/)
+    @frame_text = template.split(/\[[a-z0-9]*\]/)
     
 
     respond_to do |format|
