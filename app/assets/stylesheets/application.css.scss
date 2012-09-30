@@ -10,6 +10,7 @@
  *
  *= require_self
  *- require_tree .
+ *= require jquery.ui.autocomplete
  */
 
 //Imports
@@ -34,12 +35,15 @@ body {
     background-image: image-url('background.png');
 }
 
+header {
+    position: relative;
+    text-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
+    color: $white;
+}
+
 h1.logo {
     font-family: 'Arbutus Slab', serif;
     font-weight: normal;
-    text-align: center;
-    text-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
-    color: $white;
 
     span {
         position: relative;
@@ -48,6 +52,11 @@ h1.logo {
     .char1 {
         left: 6px;
     }
+}
+
+img#userimage {
+    vertical-align: middle;
+    width: 25px;
 }
 
 form {
@@ -105,4 +114,24 @@ form {
     margin: 0px auto;
     padding: 0px 10px;
     max-width: 800px;
+}
+
+.right-abs {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+#madlib-output {
+    margin-top:50px;
+    padding:40px;
+    font-family: Courier;
+    font-size:20px;
+    background-image: image-url('paper.png');
+
+    span.keyword {
+        font-family: "Waiting for the Sunrise", bold;
+        font-size:30px;
+        text-decoration: underline;
+    }
 }
