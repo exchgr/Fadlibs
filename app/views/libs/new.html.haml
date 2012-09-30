@@ -1,5 +1,4 @@
-%h1 New lib
-= form_tag("../create_lib", :method => "post", :name=>"aform") do
+= form_tag("../create_lib", :method => "post", :name=>"aform", class: "paper") do
   - @keyword_set.each do |keyword| 
     .word
       = text_field_tag("form[#{keyword}]")
