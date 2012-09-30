@@ -107,7 +107,7 @@ class LibsController < ApplicationController
       
 
       redirect_to @lib, notice: 'Lib was successfully created.'
-      postStatus("I am using FabLib app at HACKNY!!")
+      # postStatus("I am using FabLib app at HACKNY!!")
 
     else
 

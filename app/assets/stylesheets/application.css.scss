@@ -10,6 +10,7 @@
  *
  *= require_self
  *- require_tree .
+ *= require jquery.ui.autocomplete
  */
 
 //Imports
@@ -18,10 +19,15 @@
 
 // Variables
 
-// Greys
+// Grays
 $black: #333;
 $grayDark: #666;
+$grayLight: #aaa;
+$almostWhite: #eee;
 $white: #fff;
+
+// Accents
+$blue: #567DB8;
 
 body {
     margin: 0px;
@@ -33,7 +39,7 @@ h1.logo {
     font-family: 'Arbutus Slab', serif;
     font-weight: normal;
     text-align: center;
-    text-shadow: 0px 3px 10px rgba(0, 0, 0, .75);
+    text-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
     color: $white;
 
     span {
@@ -61,15 +67,43 @@ form {
         background: none;
         font-family: "Waiting for the Sunrise", cursive;
         font-size: 18px;
+        color: $blue;
+        text-shadow: 0px 1px 1px $white;
+
+        &:focus {
+            background: none;
+            border-bottom-color: $grayDark;
+        }
     }
 
-    .word {
-        display: inline-block;
+    .button {
+        clear: both;
+        display: block;
+        margin: 0px auto;
+        top: 10px;
+        border: {
+            width: 3px;
+            radius: 100px;
+        }
+        width: 150px;
+        font-size: 20px;
+    }
+
+    .columns {
         text-align: center;
+    }
+
+    &.paper {
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
+        border-radius: 10px;
+        padding: 40px;
+        background-color: $almostWhite;
+        background-image: image-url('paper.png');
     }
 }
 
 .container {
     margin: 0px auto;
+    padding: 0px 10px;
     max-width: 800px;
 }

@@ -15,7 +15,6 @@ gem 'annotate', '2.5.0', group: :development
 
 group :development do
 	gem 'sqlite3'
-	gem "sqlite3-ruby", "~> 1.3.3"
 end
 
 group :production do
@@ -37,6 +36,7 @@ group :assets do
 
   gem 'compass-rails', '~> 1.0.3'
   gem 'zurb-foundation', '~> 3.0.9'
+  gem 'jquery-ui-rails'
 
   gem 'uglifier', '>= 1.0.3'
 end

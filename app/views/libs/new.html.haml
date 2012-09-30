@@ -1,12 +1,11 @@
-%h1 New lib
-= form_tag("../create_lib", :method => "post", :name=>"aform") do
+= form_tag("../create_lib", :method => "post", :name=>"aform", class: "paper") do
+  .row
   - @keyword_set.each do |keyword| 
-    .word
+    .four.columns
       = text_field_tag("form[#{keyword}]")
       %br/
       = label_tag("form[#{keyword}]", keyword.gsub(/[^A-Za-z']/, ""))
 
   = hidden_field_tag("frame_text", @frame_text.join(','))
   = hidden_field_tag("keyword_text", @keyword_text.join(','))
-  = submit_tag("Submit")
-= link_to 'Back', libs_path
+  = submit_tag("Libify", class: "button")
