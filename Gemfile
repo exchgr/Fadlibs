@@ -1,6 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'rb-readline'
+gem 'execjs'
+gem 'therubyracer'
+gem "sqlite3-ruby", "~> 1.3.3"
+gem "haml-rails"
+gem "veritable", "~> 0.1.6.36"
+gem "koala"
+gem 'annotate', '2.5.0', group: :development
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
