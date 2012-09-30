@@ -8,7 +8,6 @@ window.fbAsyncInit = ->
     status: true # check login status
     cookie: true # enable cookies to allow the server to access the session
     xfbml: true # parse XFBML
-$('header').on 'click', '.fb-login-button', ->
   FB.login (user) ->
     if user.authResponse
       $(".fb-login-button").hide()
