@@ -10,24 +10,56 @@ class HomeController < ApplicationController
       @token = @oauth.get_access_token(params["code"]) 
       @message = "done"  
       @graph = Koala::Facebook::API.new(@token)
-      session["token"] = params["code"]
-      @user  = @graph.get_object("me")          
-      @fb_user_id =@user["id"]   
-      target_id = 1241641191    
-      makeFbrequests 
-      postStatus  target_id     
+      session["token"] = params["code"]  
+      if  !session["message"].nil?
+        postStatus session["message"]
+      end  
     end 
+    #redirect_to request.original_url+"/lib/"+session["lib_id"].to_str
   end
-  def makeFbrequests
+  def makeFbrequest
     if params["code"]            
       @friends = @graph.graph_call("me/friends")      
       @message ="done" 
     end 
   end  
-  def postStatus target_id
-      #@graph.put_wall_post("testing facebook graphi api ...heeya!")
-      options = {}
-      attachment = {}
-      #@graph.put_connections(target_id, "feed", attachment.merge({:message => "testing facebook graphi api ...heeya!"}), options)
-  end  
+  def postStatus message
+    if message.length > 0      
+      @graph.put_wall_post(message.to_str)
+    end        
+  end 
+  def get_full_lib(lib)
+    frame_text = lib.frame_text.split("|")
+    keyword_text = lib.keyword_text.split("|")
+    keyword_array = lib.keyword_array.split("|")
+    value_array = lib.value_array.split("|")
+
+    logger.debug("frame text:#{frame_text}")
+    logger.debug("keyword text:#{keyword_text}")
+    logger.debug("keyword array:#{keyword_array}")
+    logger.debug("value array:#{value_array}")
+
+    key_value_map = {}
+    keyword_array.each_index do |i|
+      key_value_map[keyword_array[i]] = value_array[i]
+    end
+    
+    logger.debug("key value map: #{key_value_map}") #works
+
+    finalstring = ""
+    frame_text.each_index do |i|
+      begin
+        trimmed_keyword = keyword_text[i][1..keyword_text[i].length-2]
+        finalstring = finalstring + frame_text[i] + '<span class="keyword">'+key_value_map[trimmed_keyword]+'</span>'
+      rescue
+        finalstring = finalstring + frame_text[i]
+      end
+
+    end
+
+    #logger.debug("finalstring: #{finalstring}")
+
+    return finalstring.html_safe
+    
+  end 
 end
