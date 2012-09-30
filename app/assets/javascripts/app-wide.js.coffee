@@ -15,9 +15,9 @@ window.fbAsyncInit = ->
       FB.api "/me", (user) ->
         console.log "Good to see you, " + user.name + "."
         if user
-          image = document.getElementById('image');
+          image = $('#userimage')[0]
           image.src = 'http://graph.facebook.com/' + user.id + '/picture';
-          name = document.getElementById('name');
+          name = $('#username')[0]
           name.innerHTML = user.name
     else
       console.log "User cancelled login or did not fully authorize."

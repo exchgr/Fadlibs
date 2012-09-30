@@ -37,13 +37,13 @@ body {
 
 header {
     position: relative;
+    text-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
+    color: $white;
 }
 
 h1.logo {
     font-family: 'Arbutus Slab', serif;
     font-weight: normal;
-    text-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
-    color: $white;
 
     span {
         position: relative;
@@ -52,6 +52,11 @@ h1.logo {
     .char1 {
         left: 6px;
     }
+}
+
+img#userimage {
+    vertical-align: middle;
+    width: 25px;
 }
 
 form {
