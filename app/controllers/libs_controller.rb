@@ -25,6 +25,8 @@ class LibsController < ApplicationController
   # GET /libs/new.json
   def new
     @lib = Lib.new
+    
+    templates = ['[person1] and [person2] went to the [place].','[person1] was carrying a/an [adjective] [noun]']
 
     respond_to do |format|
       format.html # new.html.erb
