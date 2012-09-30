@@ -1,0 +1,17 @@
+%h1 Listing libs
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @libs.each do |lib|
+    %tr
+      %td= link_to 'Show', lib
+      %td= link_to 'Edit', edit_lib_path(lib)
+      %td= link_to 'Destroy', lib, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Lib', new_lib_path

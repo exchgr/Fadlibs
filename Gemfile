@@ -13,8 +13,15 @@ gem 'annotate', '2.5.0', group: :development
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'haml'
+group :development do
+	gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+end
+
+gem 'haml-rails'
 gem 'thin'
 
 # Gems used only for assets and not required
@@ -48,3 +55,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+

@@ -1,6 +1,11 @@
 Fadlibs::Application.routes.draw do
+<<<<<<< HEAD
   get "home/index"
   root :to => "home#index"
+=======
+  resources :libs
+
+>>>>>>> df04c33ba49b589666947c0248b3295b838f3804
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
