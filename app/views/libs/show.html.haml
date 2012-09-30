@@ -1,5 +1,10 @@
 %p#notice= notice
 
+- @keyword_text = @lib.keyword_text
+- @frame_text = @lib.frame_text
+
+= @keyword_text
+= @frame_text
 
 = link_to 'Edit', edit_lib_path(@lib)
 \|

@@ -1,9 +1,9 @@
 Fadlibs::Application.routes.draw do
-
   get "home/index"
   root :to => "home#index"
+  resources :libs 
+  match 'create_lib' => 'libs#create_lib'
 
-  resources :libs
 
 
   # The priority is based upon order of creation:
