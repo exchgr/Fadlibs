@@ -2,8 +2,11 @@
 %html
   %head
     %title Fadlibs
-    = stylesheet_link_tag 'application', controller.controller_name, media: 'all'
+    = stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Arbutus+Slab', controller.controller_name, media: 'all'
     = javascript_include_tag 'application', 'app-wide', controller.controller_name
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = csrf_meta_tags
   %body
-    = yield
+    .container
+      %h1.logo Fadlibs.
+      = yield
