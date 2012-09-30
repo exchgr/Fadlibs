@@ -6,6 +6,6 @@
       %br/
       = label_tag("form[#{keyword}]", keyword.gsub(/[^A-Za-z']/, ""))
 
-  = hidden_field_tag("frame_text", @frame_text.join(','))
-  = hidden_field_tag("keyword_text", @keyword_text.join(','))
+  = hidden_field_tag("frame_text", @frame_text.join('|'))
+  = hidden_field_tag("keyword_text", @keyword_text.join('|'))
   = submit_tag("Libify", class: "button")
