@@ -19,6 +19,8 @@
 // Variables
 
 // Greys
+$black: #333;
+$grayDark: #666;
 $white: #fff;
 
 body {
@@ -40,6 +42,30 @@ h1.logo {
 
     .char1 {
         left: 6px;
+    }
+}
+
+form {
+    label, input[type=text] {
+        display: inline;
+    }
+
+    input[type=text] {
+        margin-bottom: 0px;
+        box-shadow: none;
+        border: none;
+        border-bottom: 3px solid $grayDark;
+        border-radius: 6px;
+        max-width: 200px;
+        height: auto;
+        background: none;
+        font-family: "Waiting for the Sunrise", cursive;
+        font-size: 18px;
+    }
+
+    .word {
+        display: inline-block;
+        text-align: center;
     }
 }
 

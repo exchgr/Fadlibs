@@ -1,8 +1,10 @@
 %h1 New lib
 = form_tag("../create_lib", :method => "post", :name=>"aform") do
   - @keyword_text.each_index do |i| 
-    = label_tag("form[#{i}]", @keyword_text[i].gsub(/[^A-Za-z']/, ""))
-    = text_field_tag("form[#{i}]")
+    .word
+      = text_field_tag("form[#{i}]")
+      %br/
+      = label_tag("form[#{i}]", @keyword_text[i].gsub(/[^A-Za-z']/, ""))
 
   =hidden_field_tag("frame_text", @frame_text.join(','))
 
