@@ -15,8 +15,14 @@ class LibsController < ApplicationController
   # GET /libs/1.json
   def show
     @lib = Lib.find(params[:id])
-
     @fullstring = get_full_lib(@lib)
+    session["message"] = @fullstring
+    session["lib_id"] = params[:id]
+    app_id = "367333956679167"
+    app_secret ="790cb4afc91ea9aa8949ec944af62f2e"
+    callback_url = "http://localhost:3000"  
+    @oauth = Koala::Facebook::OAuth.new(app_id, app_secret, callback_url)
+    @redirect_url = "https://graph.facebook.com/oauth/authorize?client_id="+app_id+"& redirect_url="+@oauth.url_for_oauth_code(:permissions =>"user_status,friends_status,publish_stream")+"&auth_type=reauthenticate"           
   end
 
   # GET /libs/new
@@ -182,17 +188,5 @@ class LibsController < ApplicationController
       @friends = @graph.graph_call("me/friends")      
       @message ="done" 
     end 
-  end  
-  def postStatus(message)
-  app_id = "367333956679167"
-    app_secret ="790cb4afc91ea9aa8949ec944af62f2e"
-    callback_url = "http://localhost:3000/"
-    @oauth = Koala::Facebook::OAuth.new(app_id, app_secret, callback_url)
-    @token = @oauth.get_access_token(session["token"])     
-    @graph = Koala::Facebook::API.new(@token)
-    @graph.put_wall_post(message)
-    #options = {}
-    #attachment = {}
-      #@graph.put_connections(target_id, "feed", attachment.merge({:message => "testing facebook graphi api ...heeya!"}), options)
-  end 
+  end   
 end
