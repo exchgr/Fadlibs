@@ -1,4 +1,5 @@
 class LibsController < ApplicationController
+
   # GET /libs
   # GET /libs.json
   def index
@@ -33,6 +34,10 @@ class LibsController < ApplicationController
     logger.debug("selected template: #{template}")
 
     @frame_text = template.split(/\[[a-z0-9]*\]/)
+    @keyword_text = template.scan(/\[[a-z0-9]*\]/)
+
+    logger.debug("frame text: #{@frame_text}")
+    logger.debug("keyword text: #{@keyword_text}")
     
 
     respond_to do |format|
@@ -46,10 +51,38 @@ class LibsController < ApplicationController
     @lib = Lib.find(params[:id])
   end
 
+  def create_lib
+    if request.post?
+      logger.debug("params: #{params}") 
+      @lib = Lib.new
+      
+
+      @lib.update_attribute(:frame_text, params[:frame_text])
+      keyword_hash = params[:form]
+      keyword_array = []
+      keyword_hash.each_pair { |key,value| keyword_array.append(value)}
+
+      logger.debug("keyword array: #{keyword_array}")
+
+      @lib.update_attribute(:keyword_text, keyword_array.join(','))
+
+      @lib.save
+
+      redirect_to @lib, notice: 'Lib was successfully created.'
+
+    else
+
+    end
+
+  end
+
   # POST /libs
   # POST /libs.json
+
   def create
-    @lib = Lib.new(params[:lib])
+
+
+    #@lib = Lib.new(params[:lib])
 
     respond_to do |format|
       if @lib.save
