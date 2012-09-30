@@ -16,9 +16,6 @@ class LibsController < ApplicationController
   def show
     @lib = Lib.find(params[:id])
     @fullstring = get_full_lib(@lib)
-<<<<<<< .merge_file_THb4lY
-    postStatus(@fullstring)
-=======
     session["message"] = @fullstring
     session["lib_id"] = params[:id]
     app_id = "367333956679167"
@@ -26,7 +23,6 @@ class LibsController < ApplicationController
     callback_url = "http://localhost:3000"  
     @oauth = Koala::Facebook::OAuth.new(app_id, app_secret, callback_url)
     @redirect_url = "https://graph.facebook.com/oauth/authorize?client_id="+app_id+"& redirect_url="+@oauth.url_for_oauth_code(:permissions =>"user_status,friends_status,publish_stream")+"&auth_type=reauthenticate"           
->>>>>>> .merge_file_kBEcBZ
   end
 
   # GET /libs/new
