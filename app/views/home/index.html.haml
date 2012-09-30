@@ -1,11 +1,6 @@
-%input#location{:type => "text"}/
-#clickmediv
-  %input#clickme{:type => "button",:value=>"asjkdl"}/
--else
-  / -@friends.each_index do |i|	
-  /   = (i+1).to_s+" )"
-  /   = @friends[i]["name"]
-  /   %br/
+-if session["token"]
+  = link_to("All libs", libs_path)
+  	
 
 
 
