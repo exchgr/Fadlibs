@@ -25,6 +25,9 @@ $grayLight: #aaa;
 $almostWhite: #eee;
 $white: #fff;
 
+// Accents
+$blue: #567DB8;
+
 body {
     margin: 0px;
     padding: 0px;
@@ -63,6 +66,7 @@ form {
         background: none;
         font-family: "Waiting for the Sunrise", cursive;
         font-size: 18px;
+        color: $blue;
         text-shadow: 0px 1px 1px $white;
 
         &:focus {
