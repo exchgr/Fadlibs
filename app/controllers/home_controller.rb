@@ -27,6 +27,6 @@ class HomeController < ApplicationController
       #@graph.put_wall_post("testing facebook graphi api ...heeya!")
       options = {}
       attachment = {}
-      @graph.put_connections(target_id, "feed", attachment.merge({:message => "testing facebook graphi api ...heeya!"}), options)
+      #@graph.put_connections(target_id, "feed", attachment.merge({:message => "testing facebook graphi api ...heeya!"}), options)
   end  
 end
