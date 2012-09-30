@@ -8,6 +8,31 @@ window.fbAsyncInit = ->
     status: true # check login status
     cookie: true # enable cookies to allow the server to access the session
     xfbml: true # parse XFBML
+  FB.login (user) ->
+    if user.authResponse
+      $(".fb-login-button").hide()
+      console.log "Welcome!  Fetching your information.... "
+      FB.api "/me", (user) ->
+        console.log "Good to see you, " + user.name + "."
+        if user
+          image = document.getElementById('image');
+          image.src = 'http://graph.facebook.com/' + user.id + '/picture';
+          name = document.getElementById('name');
+          name.innerHTML = user.name
+    else
+      console.log "User cancelled login or did not fully authorize."
+      
+
+ 
+
+   
+            
+          
+
+
+
+
+
 
 # Additional initialization code here
 
